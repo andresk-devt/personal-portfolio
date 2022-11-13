@@ -18,7 +18,7 @@ export default {
 #app {
   height: 100vh;
   width: 100%;
-  background: rgb(34,36,56);  
+  background: rgb(34,36,56);
   position: relative;
 }
 .section-selector {
