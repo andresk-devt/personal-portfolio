@@ -4,6 +4,7 @@ export default {
       window: null,
       scrollY: 0,
       screenWidth: null,
+      activeCard: "home"
     }
   },
   mounted() {
@@ -11,6 +12,8 @@ export default {
     this.scrollY = window.scrollY;
     window.addEventListener("resize", this.onReSize);
     window.addEventListener("scroll", this.onScroll);
+  },
+  watch: {
   },
   methods: {
     scrollMove(position) {
@@ -22,6 +25,7 @@ export default {
     },
     onScroll() {
       this.scrollY = window.scrollY;
+      // como analizar cual es el $el que esta en el momento
     },
     onReSize() {
       this.screenWidth = window.innerWidth;
