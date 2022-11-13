@@ -5,10 +5,10 @@
         <div class="content__container">
           <p class="content__container__text">Hi, I'm</p>
           <ul class="content__container__list">
+            <li class="content__container__list__item">Andres Camilo Gómez!</li>
             <li class="content__container__list__item">
-              Andres Camilo Gómez!
+              a Frontend Developer!
             </li>
-            <li class="content__container__list__item">a Frontend Developer!</li>
           </ul>
         </div>
         <p class="content__information">
@@ -17,7 +17,12 @@
           in constant learning, I like to work in a team and give continuous
           feedback and manage good practices.
         </p>
-        <button class="button-content" @click="scrollMove(770)" >About me</button>
+        <button class="button-content" @click="scrollMove(770)">
+          About me
+        </button>
+        <div class="video-content">
+          <Lottie :options="defaultOptions" />
+        </div>
       </div>
     </div>
   </div>
@@ -25,10 +30,23 @@
 
 <script>
 import scrollMove from "@/Extend/scrollMove";
+import Lottie from "vue-lottie/src/lottie.vue";
+import * as animationData from "@/assets/animations/programmer.json";
 
 export default {
   name: "Home",
   mixins: [scrollMove],
+  components: {
+    Lottie,
+  },
+  data() {
+    return {
+      defaultOptions: {
+        animationData: animationData.default,
+      },
+      animationSpeed: 1,
+    };
+  },
 };
 </script>
 
@@ -51,17 +69,16 @@ export default {
   }
 }
 .content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 200px;
-  overflow: hidden;
   font-size: 35px;
   line-height: 40px;
   color: #ecf0f1;
-  margin: 0px 50px;
   width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 25px;
+  position: relative;
   &__information {
     font-size: 1rem;
     font-family: "Arial";
@@ -109,6 +126,13 @@ export default {
   &:hover {
     filter: brightness(0.9);
   }
+}
+.video-content {
+  height: 260px;
+  width: 260px;
+  position: absolute;
+  bottom: 15px;
+  right: 30px;
 }
 @keyframes opacity {
   0%,
