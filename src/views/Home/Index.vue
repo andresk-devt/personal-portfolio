@@ -6,9 +6,9 @@
           <p class="content__container__text">Hi, I'm</p>
           <ul class="content__container__list">
             <li class="content__container__list__item">
-              Andres Camilo Gómez !
+              Andres Camilo Gómez!
             </li>
-            <li class="content__container__list__item">Frontend Developer !</li>
+            <li class="content__container__list__item">a Frontend Developer!</li>
           </ul>
         </div>
         <p class="content__information">
