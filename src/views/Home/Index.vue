@@ -1,13 +1,27 @@
 <template>
   <div class="home">
-    <div class="home-content"></div>
+    <div class="home-content">
+      <div class="content">
+        <div class="content__container">
+          <p class="content__container__text">Hi, I'm</p>
+          <ul class="content__container__list">
+            <li class="content__container__list__item">Andres Camilo Gómez !</li>
+            <li class="content__container__list__item">Frontend Developer !</li>
+          </ul>
+        </div>
+        <p class="content__information">
+          Front-end developer, I like to teach what I know and learn new things from others. I consider myself a self-taught person and I enjoy being in constant learning, I like to work in a team and give continuous feedback and manage good practices.
+        </p>
+        <button class="button-content">About me</button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home'
-}
+  name: "Home",
+};
 </script>
 
 <style lang="scss" scoped>
@@ -17,14 +31,110 @@ export default {
   display: flex;
   align-items: center;
   &-content {
-    background: rgb(34,36,56);
-    filter: brightness(.7);
+    background: rgb(34, 36, 56);
+    filter: brightness(.9);
     width: 80%;
     height: 80%;
     margin: auto;
     padding: 13px;
     border-radius: 14px;
+    position: relative;
   }
 }
-
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 200px;
+  overflow: hidden;
+  font-size: 35px;
+  line-height: 40px;
+  color: #ecf0f1;
+  margin: 0px 50px;
+  width: 100%;
+  &__information {
+    font-size: 1rem;
+    font-family: 'Arial';
+    width: 60%;
+    line-height: 20px;
+    margin: 15px 0px;
+  }
+  &__container {
+    font-weight: 600;
+    font-family: "Arial";
+    overflow: hidden;
+    height: 40px;
+    &__text {
+      display: inline;
+      float: left;
+      margin: 0;
+    }
+    &__list {
+      margin-top: 0;
+      padding-left: 110px;
+      margin-left: 12px;
+      text-align: left;
+      list-style: none;
+      -webkit-animation-name: change;
+      -webkit-animation-duration: 10s;
+      -webkit-animation-iteration-count: infinite;
+      animation-name: change;
+      animation-duration: 10s;
+      animation-iteration-count: infinite;
+      &__item {
+        line-height: 40px;
+        margin: 0;
+      }
+    }
+  }
+}
+.button-content {
+  border: none;
+  height: 35px;
+  width: 100px;
+  border-radius: 13px;
+  background: rgb(246, 71, 85);
+  color: white;
+  cursor: pointer;
+  &:hover {
+    filter: brightness(.90); 
+  }
+}
+@keyframes opacity {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes change {
+  0%,
+  12.66%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  16.66%,
+  29.32% {
+    transform: translate3d(0, -50%, 0);
+  }
+  33.32%,
+  45.98% {
+    transform: translate3d(0, 0%, 0);
+  }
+  49.98%,
+  62.64% {
+    transform: translate3d(0, -50%, 0);
+  }
+  66.64%,
+  79.3% {
+    transform: translate3d(0, 0%, 0);
+  }
+  83.3%,
+  95.96% {
+    transform: translate3d(0, -50%, 0);
+  }
+}
 </style>
