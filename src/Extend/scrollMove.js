@@ -26,6 +26,8 @@ export default {
     onScroll() {
       this.scrollY = window.scrollY;
       // como analizar cual es el $el que esta en el momento
+      const e = document.defaultView.visualViewport;
+      console.log(e.pageTop);
     },
     onReSize() {
       this.screenWidth = window.innerWidth;

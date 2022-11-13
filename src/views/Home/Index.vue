@@ -17,7 +17,7 @@
           in constant learning, I like to work in a team and give continuous
           feedback and manage good practices.
         </p>
-        <button class="button-content" @click="scrollMove(770)">
+        <button class="button-content" @click="scrollTo('about')">
           About me
         </button>
         <div class="video-content">
@@ -47,6 +47,11 @@ export default {
       animationSpeed: 1,
     };
   },
+  methods: {
+    scrollTo(refName) {
+      this.$emit('animatedScrollCard', refName);
+    }
+  }
 };
 </script>
 

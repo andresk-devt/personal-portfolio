@@ -49,6 +49,42 @@ export default {
     };
   },
   watch: {
+    scrollY: {
+      immediate: true,
+      handler() {
+        if (this.scrollY === 0 || this.scrollY < 770) {
+          this.items[0].isActive = true;
+          this.items[1].isActive = false;
+          this.items[2].isActive = false;
+          this.items[3].isActive = false;
+          this.items[4].isActive = false;
+        } else if (this.scrollY < 1540) {
+          this.items[0].isActive = false;
+          this.items[1].isActive = true;
+          this.items[2].isActive = false;
+          this.items[3].isActive = false;
+          this.items[4].isActive = false;
+        } else if (this.scrollY < 2310) {
+          this.items[0].isActive = false;
+          this.items[1].isActive = false;
+          this.items[2].isActive = true;
+          this.items[3].isActive = false;
+          this.items[4].isActive = false;
+        } else if (this.scrollY < 3080) {
+          this.items[0].isActive = false;
+          this.items[1].isActive = false;
+          this.items[2].isActive = false;
+          this.items[3].isActive = true;
+          this.items[4].isActive = false;
+        } else {
+          this.items[0].isActive = false;
+          this.items[1].isActive = false;
+          this.items[2].isActive = false;
+          this.items[3].isActive = false;
+          this.items[4].isActive = true;
+        }
+      },
+    },
     activeCard() {
       return this.items.map((item) => {
         if (item.ref === this.activeCard) {

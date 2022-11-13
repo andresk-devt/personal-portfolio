@@ -1,6 +1,6 @@
 <template>
   <main class="main">
-    <home ref="home" id="home"></home>
+    <home ref="home" id="home" @animatedScrollCard="animatedScrollCard"></home>
     <about ref="about" id="about"></about>
     <projects ref="projects" id="projects"></projects>
     <skills ref="skills" id="skills"></skills>
