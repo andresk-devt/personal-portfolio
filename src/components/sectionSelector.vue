@@ -35,6 +35,7 @@ export default {
 .section-selector {
   font-family: "Arial";
   background: rgb(34, 36, 56);
+  filter: brightness(.7); 
   color: white;
   display: inline-block;
   border-radius: 13px;
