@@ -2,9 +2,10 @@
   <ul class="section-selector">
     <li
       v-for="item in items"
-      :key="item.isActive"
+      :key="item.text"
       class="section-selector__item"
       :class="item.isActive ? 'active' : ''"
+      @click="scrollMove(item.position)"
     >
       <ion-icon :name="item.icon" title></ion-icon>
     </li>
@@ -12,19 +13,22 @@
 </template>
 
 <script>
+import scrollMove from "@/Extend/scrollMove";
+
 export default {
   name: "SectionSelector",
+  mixins: [scrollMove],
   props: {
     ActiveCard: String
   },
   data() {
     return {
       items: [
-        { icon: "home-outline", isActive: true, text: "Home" },
-        { icon: "person-circle-outline", isActive: false, text: "About me" },
-        { icon: "albums-outline", isActive: false, text: "Projects" },
-        { icon: "flash-outline", isActive: false, text: "Skills" },
-        { icon: "mail-outline", isActive: false, text: "Contact me" },
+        { icon: "home-outline", isActive: true, text: "Home", position: 0 },
+        { icon: "person-circle-outline", isActive: false, text: "About me", position: 1000 },
+        { icon: "albums-outline", isActive: false, text: "Projects", position: 2000 },
+        { icon: "flash-outline", isActive: false, text: "Skills", position: 3000 },
+        { icon: "mail-outline", isActive: false, text: "Contact me", position: 4000 },
       ],
     };
   },
