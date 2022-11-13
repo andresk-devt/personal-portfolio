@@ -19,18 +19,76 @@ export default {
   name: "SectionSelector",
   mixins: [scrollMove],
   props: {
-    ActiveCard: String
+    ActiveCard: String,
   },
   data() {
     return {
       items: [
-        { icon: "home-outline", isActive: true, text: "Home", position: 0 },
-        { icon: "person-circle-outline", isActive: false, text: "About me", position: 1000 },
-        { icon: "albums-outline", isActive: false, text: "Projects", position: 2000 },
-        { icon: "flash-outline", isActive: false, text: "Skills", position: 3000 },
-        { icon: "mail-outline", isActive: false, text: "Contact me", position: 4000 },
+        { icon: "home-outline", isActive: false, text: "Home", position: 0 },
+        {
+          icon: "person-circle-outline",
+          isActive: false,
+          text: "About me",
+          position: 770,
+        },
+        {
+          icon: "albums-outline",
+          isActive: false,
+          text: "Projects",
+          position: 1540,
+        },
+        {
+          icon: "flash-outline",
+          isActive: false,
+          text: "Skills",
+          position: 2310,
+        },
+        {
+          icon: "mail-outline",
+          isActive: false,
+          text: "Contact me",
+          position: 3080,
+        },
       ],
     };
+  },
+  watch: {
+    scrollY: {
+      immediate: true,
+      handler() {
+        if (this.scrollY === 0 || this.scrollY < 770) {
+          this.items[0].isActive = true;
+          this.items[1].isActive = false;
+          this.items[2].isActive = false;
+          this.items[3].isActive = false;
+          this.items[4].isActive = false;
+        } else if (this.scrollY < 1540) {
+          this.items[0].isActive = false;
+          this.items[1].isActive = true;
+          this.items[2].isActive = false;
+          this.items[3].isActive = false;
+          this.items[4].isActive = false;
+        } else if (this.scrollY < 2310) {
+          this.items[0].isActive = false;
+          this.items[1].isActive = false;
+          this.items[2].isActive = true;
+          this.items[3].isActive = false;
+          this.items[4].isActive = false;
+        } else if (this.scrollY < 3080) {
+          this.items[0].isActive = false;
+          this.items[1].isActive = false;
+          this.items[2].isActive = false;
+          this.items[3].isActive = true;
+          this.items[4].isActive = false;
+        } else {
+          this.items[0].isActive = false;
+          this.items[1].isActive = false;
+          this.items[2].isActive = false;
+          this.items[3].isActive = false;
+          this.items[4].isActive = true;
+        }
+      },
+    },
   },
 };
 </script>
@@ -39,7 +97,7 @@ export default {
 .section-selector {
   font-family: "Arial";
   background: rgb(34, 36, 56);
-  filter: brightness(.7); 
+  filter: brightness(0.7);
   color: white;
   display: inline-block;
   border-radius: 13px;

@@ -17,15 +17,18 @@
           in constant learning, I like to work in a team and give continuous
           feedback and manage good practices.
         </p>
-        <button class="button-content">About me</button>
+        <button class="button-content" @click="scrollMove(770)" >About me</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import scrollMove from "@/Extend/scrollMove";
+
 export default {
   name: "Home",
+  mixins: [scrollMove],
 };
 </script>
 
