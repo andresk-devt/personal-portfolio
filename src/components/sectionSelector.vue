@@ -40,6 +40,7 @@ export default {
   display: inline-block;
   border-radius: 13px;
   text-align: center;
+  z-index: 10;
   &__item {
     padding: 10px;
     cursor: pointer;
