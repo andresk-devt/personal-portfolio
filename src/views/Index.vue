@@ -1,19 +1,19 @@
 <template>
   <main class="main">
     <home></home>
-    <!-- <about></about> -->
+    <about></about>
   </main>
 </template>
 
 <script>
 import home from "@/views/Home/Index.vue";
-// import about from "@/views/AboutMe/Index.vue"
+import about from "@/views/AboutMe/Index.vue"
 
 export default {
   name: "MainContent",
   components: {
     home,
-    // about
+    about
   },
 };
 </script>

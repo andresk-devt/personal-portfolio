@@ -5,12 +5,17 @@
         <div class="content__container">
           <p class="content__container__text">Hi, I'm</p>
           <ul class="content__container__list">
-            <li class="content__container__list__item">Andres Camilo Gómez !</li>
+            <li class="content__container__list__item">
+              Andres Camilo Gómez !
+            </li>
             <li class="content__container__list__item">Frontend Developer !</li>
           </ul>
         </div>
         <p class="content__information">
-          Front-end developer, I like to teach what I know and learn new things from others. I consider myself a self-taught person and I enjoy being in constant learning, I like to work in a team and give continuous feedback and manage good practices.
+          Front-end developer, I like to teach what I know and learn new things
+          from others. I consider myself a self-taught person and I enjoy being
+          in constant learning, I like to work in a team and give continuous
+          feedback and manage good practices.
         </p>
         <button class="button-content">About me</button>
       </div>
@@ -24,15 +29,16 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .home {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
+  background: rgb(34, 36, 56);
   &-content {
     background: rgb(34, 36, 56);
-    filter: brightness(.9);
+    filter: brightness(0.9);
     width: 80%;
     height: 80%;
     margin: auto;
@@ -55,7 +61,7 @@ export default {
   width: 100%;
   &__information {
     font-size: 1rem;
-    font-family: 'Arial';
+    font-family: "Arial";
     width: 60%;
     line-height: 20px;
     margin: 15px 0px;
@@ -98,7 +104,7 @@ export default {
   color: white;
   cursor: pointer;
   &:hover {
-    filter: brightness(.90); 
+    filter: brightness(0.9);
   }
 }
 @keyframes opacity {
