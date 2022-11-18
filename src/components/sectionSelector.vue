@@ -2,10 +2,10 @@
   <ul class="section-selector">
     <li
       v-for="item in items"
-      :key="item.text"
+      :key="item.key"
       class="section-selector__item"
       :class="item.isActive ? 'active' : ''"
-      @click="scrollMove(item.position)"
+      @click="scrollCard(item.ref)"
     >
       <ion-icon :name="item.icon" title></ion-icon>
     </li>
@@ -19,35 +19,26 @@ export default {
   name: "SectionSelector",
   mixins: [scrollMove],
   props: {
-    ActiveCard: String,
+    activeCard: String,
   },
   data() {
     return {
       items: [
-        { icon: "home-outline", isActive: false, text: "Home", position: 0 },
+        { icon: "home-outline", isActive: true, ref: "home" },
         {
-          icon: "person-circle-outline",
+          icon: "flash-outline",
           isActive: false,
-          text: "About me",
-          position: 770,
+          ref: "skills",
         },
         {
           icon: "albums-outline",
           isActive: false,
-          text: "Projects",
-          position: 1540,
-        },
-        {
-          icon: "flash-outline",
-          isActive: false,
-          text: "Skills",
-          position: 2310,
+          ref: "projects",
         },
         {
           icon: "mail-outline",
           isActive: false,
-          text: "Contact me",
-          position: 3080,
+          ref: "contact",
         },
       ],
     };
@@ -56,38 +47,43 @@ export default {
     scrollY: {
       immediate: true,
       handler() {
-        if (this.scrollY === 0 || this.scrollY < 770) {
+        if (this.scrollY < 700) {
           this.items[0].isActive = true;
           this.items[1].isActive = false;
           this.items[2].isActive = false;
           this.items[3].isActive = false;
-          this.items[4].isActive = false;
-        } else if (this.scrollY < 1540) {
+        } else if (this.scrollY < 1500) {
           this.items[0].isActive = false;
           this.items[1].isActive = true;
           this.items[2].isActive = false;
           this.items[3].isActive = false;
-          this.items[4].isActive = false;
-        } else if (this.scrollY < 2310) {
+        } else if (this.scrollY < 2100) {
           this.items[0].isActive = false;
           this.items[1].isActive = false;
           this.items[2].isActive = true;
           this.items[3].isActive = false;
-          this.items[4].isActive = false;
         } else if (this.scrollY < 3080) {
           this.items[0].isActive = false;
           this.items[1].isActive = false;
           this.items[2].isActive = false;
           this.items[3].isActive = true;
-          this.items[4].isActive = false;
-        } else {
-          this.items[0].isActive = false;
-          this.items[1].isActive = false;
-          this.items[2].isActive = false;
-          this.items[3].isActive = false;
-          this.items[4].isActive = true;
         }
       },
+    },
+    activeCard() {
+      return this.items.map((item) => {
+        if (item.ref === this.activeCard) {
+          item.isActive = true;
+          item.key += 1;
+        } else {
+          item.isActive = false;
+        }
+      });
+    },
+  },
+  methods: {
+    scrollCard(ref) {
+      this.$emit("animatedScrollCard", ref);
     },
   },
 };
