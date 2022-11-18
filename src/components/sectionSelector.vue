@@ -26,19 +26,14 @@ export default {
       items: [
         { icon: "home-outline", isActive: true, ref: "home" },
         {
-          icon: "person-circle-outline",
+          icon: "flash-outline",
           isActive: false,
-          ref: "about",
+          ref: "skills",
         },
         {
           icon: "albums-outline",
           isActive: false,
           ref: "projects",
-        },
-        {
-          icon: "flash-outline",
-          isActive: false,
-          ref: "skills",
         },
         {
           icon: "mail-outline",
@@ -52,36 +47,26 @@ export default {
     scrollY: {
       immediate: true,
       handler() {
-        if (this.scrollY === 0 || this.scrollY < 770) {
+        if (this.scrollY < 700) {
           this.items[0].isActive = true;
           this.items[1].isActive = false;
           this.items[2].isActive = false;
           this.items[3].isActive = false;
-          this.items[4].isActive = false;
-        } else if (this.scrollY < 1540) {
+        } else if (this.scrollY < 1500) {
           this.items[0].isActive = false;
           this.items[1].isActive = true;
           this.items[2].isActive = false;
           this.items[3].isActive = false;
-          this.items[4].isActive = false;
-        } else if (this.scrollY < 2310) {
+        } else if (this.scrollY < 2100) {
           this.items[0].isActive = false;
           this.items[1].isActive = false;
           this.items[2].isActive = true;
           this.items[3].isActive = false;
-          this.items[4].isActive = false;
         } else if (this.scrollY < 3080) {
           this.items[0].isActive = false;
           this.items[1].isActive = false;
           this.items[2].isActive = false;
           this.items[3].isActive = true;
-          this.items[4].isActive = false;
-        } else {
-          this.items[0].isActive = false;
-          this.items[1].isActive = false;
-          this.items[2].isActive = false;
-          this.items[3].isActive = false;
-          this.items[4].isActive = true;
         }
       },
     },
@@ -93,14 +78,14 @@ export default {
         } else {
           item.isActive = false;
         }
-      })
-    }
+      });
+    },
   },
   methods: {
     scrollCard(ref) {
-      this.$emit('animatedScrollCard', ref);
-    }
-  }
+      this.$emit("animatedScrollCard", ref);
+    },
+  },
 };
 </script>
 
