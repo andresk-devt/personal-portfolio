@@ -2,55 +2,77 @@
   <div class="home">
     <div class="home-content">
       <div class="content">
-        <div class="content__container">
-          <p class="content__container__text">Hi, I'm</p>
-          <ul class="content__container__list">
-            <li class="content__container__list__item">Andres Camilo Gómez!</li>
-            <li class="content__container__list__item">
-              a Frontend Developer!
-            </li>
-          </ul>
-        </div>
-        <p class="content__information">
-          Front-end developer, I like to teach what I know and learn new things
-          from others. I consider myself a self-taught person and I enjoy being
-          in constant learning, I like to work in a team and give continuous
-          feedback and manage good practices.
-        </p>
-        <button class="button-content" @click="scrollMove(770)">
-          About me
-        </button>
-        <div class="video-content">
-          <Lottie :options="defaultOptions" />
+        <div class="content-component" id="content-component">
+          <HomeInformation ref="home-information" />
+          <MyEducation ref="my-education" />
         </div>
       </div>
+      <StepBar
+        class="step-bar"
+        :items="components"
+        :componentActive="componentActive"
+        @scrollHomeInformation="scrollHomeInformation"
+      />
     </div>
   </div>
 </template>
 
 <script>
+// import Lottie from "vue-lottie/src/lottie.vue";
+// import * as animationData from "@/assets/animations/programmer.json";
 import scrollMove from "@/Extend/scrollMove";
-import Lottie from "vue-lottie/src/lottie.vue";
-import * as animationData from "@/assets/animations/programmer.json";
+import StepBar from "@/components/stepBar.vue";
+import HomeInformation from "./components/homeInformation.vue";
+import MyEducation from "./components/myEducation.vue";
 
 export default {
   name: "Home",
   mixins: [scrollMove],
   components: {
-    Lottie,
+    // Lottie,
+    StepBar,
+    HomeInformation,
+    MyEducation,
   },
   data() {
     return {
-      defaultOptions: {
-        animationData: animationData.default,
-      },
-      animationSpeed: 1,
+      // defaultOptions: {
+      //   animationData: animationData.default,
+      // },
+      // animationSpeed: 1,
+      componentActive: 'home-information',
+      components: [
+        { component: 'home-information' },
+        { component: 'my-education' }
+      ]
     };
+  },
+  methods: {
+    scrollHomeInformation(refName) {
+      this.componentActive = refName;
+      const e = document.getElementById("content-component");
+      if (refName === "my-education") {
+        e.scroll({
+          top: 225,
+          left: 0,
+          behavior: "smooth",
+        });
+      } else {
+        e.scroll({
+          top: 0,
+          left: 0,
+          behavior: "smooth",
+        });
+      }
+    },
+    scrollTo(refName) {
+      this.$emit("animatedScrollCard", refName);
+    },
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .home {
   width: 100%;
   height: 100%;
@@ -72,67 +94,21 @@ export default {
   font-size: 35px;
   line-height: 40px;
   color: #ecf0f1;
-  width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
   margin-left: 25px;
   position: relative;
-  &__information {
-    font-size: 1rem;
-    font-family: "Arial";
-    width: 60%;
-    line-height: 20px;
-    margin: 15px 0px;
-  }
-  &__container {
-    font-weight: 600;
-    font-family: "Arial";
+  &-component {
     overflow: hidden;
-    height: 40px;
-    &__text {
-      display: inline;
-      float: left;
-      margin: 0;
-    }
-    &__list {
-      margin-top: 0;
-      padding-left: 110px;
-      margin-left: 12px;
-      text-align: left;
-      list-style: none;
-      -webkit-animation-name: change;
-      -webkit-animation-duration: 10s;
-      -webkit-animation-iteration-count: infinite;
-      animation-name: change;
-      animation-duration: 10s;
-      animation-iteration-count: infinite;
-      &__item {
-        line-height: 40px;
-        margin: 0;
-      }
-    }
+    height: 225px;
   }
 }
-.button-content {
-  border: none;
-  height: 35px;
-  width: 100px;
-  border-radius: 13px;
-  background: rgb(246, 71, 85);
-  color: white;
-  cursor: pointer;
-  &:hover {
-    filter: brightness(0.9);
-  }
-}
-.video-content {
-  height: 260px;
-  width: 260px;
+.step-bar {
   position: absolute;
-  bottom: 15px;
-  right: 30px;
+  right: 25%;
+  top: 35%;
 }
 @keyframes opacity {
   0%,
