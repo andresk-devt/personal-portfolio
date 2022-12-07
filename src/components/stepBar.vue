@@ -10,8 +10,8 @@
       </li>
       <li
         class="step-bar-content__item"
-        :class="componentActive === 'my-education' ? 'is-active' : ''"
-        @click="scrollHomeInformation('my-education')"
+        :class="componentActive === 'my-experience' ? 'is-active' : ''"
+        @click="scrollHomeInformation('my-experience')"
       >
         .
       </li>

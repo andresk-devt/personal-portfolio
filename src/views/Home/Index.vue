@@ -4,7 +4,7 @@
       <div class="content">
         <div class="content-component" id="content-component">
           <HomeInformation ref="home-information" />
-          <MyEducation ref="my-education" />
+          <MyEducation ref="my-experience" />
         </div>
       </div>
       <StepBar
@@ -23,7 +23,7 @@
 import scrollMove from "@/Extend/scrollMove";
 import StepBar from "@/components/stepBar.vue";
 import HomeInformation from "./components/homeInformation.vue";
-import MyEducation from "./components/myEducation.vue";
+import MyEducation from "./components/MyExperience.vue";
 
 export default {
   name: "Home",
@@ -43,7 +43,7 @@ export default {
       componentActive: 'home-information',
       components: [
         { component: 'home-information' },
-        { component: 'my-education' }
+        { component: 'my-experience' }
       ]
     };
   },
@@ -51,7 +51,7 @@ export default {
     scrollHomeInformation(refName) {
       this.componentActive = refName;
       const e = document.getElementById("content-component");
-      if (refName === "my-education") {
+      if (refName === "my-experience") {
         e.scroll({
           top: 225,
           left: 0,
@@ -102,13 +102,16 @@ export default {
   position: relative;
   &-component {
     overflow: hidden;
-    height: 225px;
+    height: 36%;
   }
 }
 .step-bar {
   position: absolute;
-  right: 25%;
+  right: 20%;
   top: 35%;
+  @media (max-width: 975px) {
+    right: 5%;
+  }
 }
 @keyframes opacity {
   0%,
