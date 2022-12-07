@@ -1,13 +1,13 @@
 <template>
-  <main class="main">
+  <main class="main" @scroll="test()">
     <home ref="home" id="home" @animatedScrollCard="animatedScrollCard"></home>
     <skills ref="skills" id="skills"></skills>
     <projects ref="projects" id="projects"></projects>
     <contact ref="contact" id="contact"></contact>
     <sectionSelector
       class="section-selector"
-      @animatedScrollCard="animatedScrollCard"
       :activeCard="activeCard"
+      @animatedScrollCard="animatedScrollCard"
     ></sectionSelector>
   </main>
 </template>
@@ -18,17 +18,25 @@ import projects from "@/views/Projects/Index.vue";
 import skills from "@/views/Skills/Index.vue";
 import contact from "@/views/ContactMe/Index.vue";
 import sectionSelector from "@/components/sectionSelector.vue";
-import scrollMove from "@/Extend/scrollMove";
 
 export default {
   name: "MainContent",
-  mixins: [scrollMove],
   components: {
     home,
-    sectionSelector,
     projects,
+    sectionSelector,
     skills,
     contact,
+  },
+  data() {
+    return {
+      activeCard: 'home',
+      componentsPosition: null
+    }
+  },
+  mounted() {
+    this.onScroll;
+    window.addEventListener("scroll", this.onScroll);
   },
   methods: {
     animatedScrollCard(refName) {
@@ -40,6 +48,27 @@ export default {
         left: 0,
         behavior: "smooth",
       });
+    },
+    onScroll() {
+      this.calculatePositionOfBox();
+    },
+    calculatePositionOfBox() {
+      const home = this.$refs['home'].$el.getBoundingClientRect().top;
+      const skills = this.$refs['skills'].$el.getBoundingClientRect().top;
+      const projects = this.$refs['projects'].$el.getBoundingClientRect().top;
+      const contact = this.$refs['contact'].$el.getBoundingClientRect().top;
+
+      this.componentsPosition = {
+        home,
+        skills,
+        projects,
+        contact
+      }
+      Object.entries(this.componentsPosition).forEach(([key, value]) => {
+        if (value >= -760 && value <= 0) {
+          this.activeCard = key;
+        }
+      })
     },
   },
 };

@@ -20,14 +20,12 @@
 <script>
 // import Lottie from "vue-lottie/src/lottie.vue";
 // import * as animationData from "@/assets/animations/programmer.json";
-import scrollMove from "@/Extend/scrollMove";
 import StepBar from "@/components/stepBar.vue";
 import HomeInformation from "./components/homeInformation.vue";
 import MyEducation from "./components/MyExperience.vue";
 
 export default {
   name: "Home",
-  mixins: [scrollMove],
   components: {
     // Lottie,
     StepBar,
