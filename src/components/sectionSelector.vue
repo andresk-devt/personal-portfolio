@@ -4,7 +4,7 @@
       v-for="item in items"
       :key="item.key"
       class="section-selector__item"
-      :class="item.isActive ? 'active' : ''"
+      :class="activeCard === item.ref ? 'active' : ''"
       @click="scrollCard(item.ref)"
     >
       <ion-icon :name="item.icon" title></ion-icon>
@@ -13,11 +13,8 @@
 </template>
 
 <script>
-import scrollMove from "@/Extend/scrollMove";
-
 export default {
   name: "SectionSelector",
-  mixins: [scrollMove],
   props: {
     activeCard: String,
   },
@@ -42,44 +39,6 @@ export default {
         },
       ],
     };
-  },
-  watch: {
-    scrollY: {
-      immediate: true,
-      handler() {
-        if (this.scrollY < 700) {
-          this.items[0].isActive = true;
-          this.items[1].isActive = false;
-          this.items[2].isActive = false;
-          this.items[3].isActive = false;
-        } else if (this.scrollY < 1500) {
-          this.items[0].isActive = false;
-          this.items[1].isActive = true;
-          this.items[2].isActive = false;
-          this.items[3].isActive = false;
-        } else if (this.scrollY < 2100) {
-          this.items[0].isActive = false;
-          this.items[1].isActive = false;
-          this.items[2].isActive = true;
-          this.items[3].isActive = false;
-        } else if (this.scrollY < 3080) {
-          this.items[0].isActive = false;
-          this.items[1].isActive = false;
-          this.items[2].isActive = false;
-          this.items[3].isActive = true;
-        }
-      },
-    },
-    activeCard() {
-      return this.items.map((item) => {
-        if (item.ref === this.activeCard) {
-          item.isActive = true;
-          item.key += 1;
-        } else {
-          item.isActive = false;
-        }
-      });
-    },
   },
   methods: {
     scrollCard(ref) {
